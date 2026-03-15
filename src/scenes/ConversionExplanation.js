@@ -20,7 +20,8 @@ RPN to infix algorithm:
     4c. Create the string "(a operator b)", and push the result to the stack.
 5. Consider the next item of the expression and go to step 3. If there are no more items, move on to step 6.
 6. There should be one item left in the stack. Pop it off and output it.
-
+`,
+`
 Note that this returns the fully parenthesised version of the infix expression, as accounting for order of operations is beyond the scope of this tool.
 Converting from infix expressions to RPN expression is also beyond the scope of this tool.
 `

@@ -1,4 +1,4 @@
-import { evaluationProblem, RPN2InfixConversionProblem, checkAnswer } from "../utilities/questions.js";
+import { evaluationProblem, RPN2InfixConversionProblem, checkAnswer } from "../utilities/Questions.js";
 
 export default class PracticeScene extends Phaser.Scene {
     constructor() {
@@ -135,13 +135,8 @@ export default class PracticeScene extends Phaser.Scene {
         this.updatePage();
     }
 
-    buttonPress(button){
-        console.log(`Button pressed: ${button}`);
-        //const myButtons = ['+', '-', '(', ')'];        
-        if (button === 'Backspace') {
-            this.inputString = this.inputString.slice(0, -1);
-        }
-        else if (/^[a-z0-9\-+()]$/.test(button)) {
+    buttonPress(button){     
+        if (/^[a-z0-9\-+()]$/.test(button)) {
             this.inputString += button;
         }
         else if (button === '*') {

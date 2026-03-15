@@ -1,4 +1,4 @@
-export default class PseudoWalkScene extends Phaser.Scene {
+/*export default class PseudoWalkScene extends Phaser.Scene {
     constructor() {
         super({ key: 'PseudoWalkScene' });
     }
@@ -27,5 +27,30 @@ export default class PseudoWalkScene extends Phaser.Scene {
     }
     prevText() {
         //To Do
+    }
+}
+*/
+
+import {BaseExplainer} from '../scenes/BaseExplainerScene.js'
+
+export default class PseudoWalkScene extends BaseExplainer {
+    constructor(){
+        super({ key: 'PseudoWalkScene' });
+    }
+    init(data){
+        super.init({
+            pages: [
+`
+TO DO 1
+`,
+`
+TO DO 2
+`
+            ],
+            title: "Pseudocode walkthrough"
+        });
+    }
+    create() {
+        super.create();
     }
 }

@@ -1,4 +1,4 @@
-class ExpressionTreeScene extends Phaser.Scene {
+export default class ExpressionTreeAnimScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ExpressionTreeScene' });
         this.treeVisualizer = null;
@@ -24,8 +24,7 @@ class ExpressionTreeScene extends Phaser.Scene {
             this.add.text(400, 550, `RPN: ${rpn}`, { fontSize: '20px', fill: '#ff0' }).setOrigin(0.5);
         });
 
-        // Back button
-        this.createButton(100, 550, '← Back', () => this.scene.start('MenuScene'));
+        this.createButton(50, 20, 'Menu', () => this.scene.start('MenuScene'), buttonStyle);
     }
 
     createButton(x, y, text, callback) {

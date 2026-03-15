@@ -1,4 +1,4 @@
-class EvaluationScene extends Phaser.Scene {
+export default class ConvAnimationScene extends Phaser.Scene {
     constructor() {
         super({ key: 'EvaluationScene' });
     }
@@ -9,17 +9,20 @@ class EvaluationScene extends Phaser.Scene {
         // Input for RPN expression
         this.rpnInput = new ExpressionInput(this, 400, 120, '3 4 2 * +');
         
-        // Stack visualization
-        this.stack = new StackVisualizer(this, 400, 250, { maxSize: 10 });
+        // Stack visualiser
+        this.stack = new StackVisualiser(this, 400, 250, { maxSize: 10 });
         
-        // Control buttons
-        this.createControlButtons();
+        // Buttons
+        this.createAllButtons();
         
         // Step through evaluation
         this.createStepControls();
+
+
+        this.createButton(50, 20, 'Menu', () => this.scene.start('MenuScene'), buttonStyle);
     }
 
-    createControlButtons() {
+    createAllButtons() {
         // Step button
         this.createButton(300, 450, 'Step', () => this.stepEvaluation());
         

@@ -4,7 +4,7 @@ export default class BasicsScene extends BaseExplainer {
     constructor(){
         super({ key: 'BasicsScene' });
     }
-    init(data){
+    init(){
         super.init({
             pages: [
 `

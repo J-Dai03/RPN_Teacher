@@ -4,7 +4,7 @@ export default class ConversionExplanationScene extends BaseExplainer {
     constructor(){
         super({ key: 'ConversionExplanationScene' });
     }
-    init(data){
+    init(){
         super.init({
             pages: [
 `

@@ -66,3 +66,11 @@ let length = 3;
 for (let i = 0; i < length; i++){
     console.log(`Expression ${i}: ${generateRPN(12)}`)
 }*/
+
+export function expressionToString(expression){
+    if (expression.length > 0){
+        return expression.join(" ");
+    } else {
+        return "";
+    }
+}

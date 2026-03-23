@@ -19,8 +19,6 @@ export function RPN2InfixConversionProblem(level) {
         question: generateRPN((2 * level) + 1, true, true, 9)};
     let solutionCal = RPN2Infix(problem.question)
     problem.solution = solutionCal.resultantExpression;
-    console.log(`RPN expression generated: ${problem.question}, Solution: ${toString(solutionCal)}`);
-    console.log(`RPN expression generated: ${problem.question}, Solution: ${problem.solution}`);
     return problem;
 }
 

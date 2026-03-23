@@ -10,13 +10,21 @@ import ExpressionTreeAnimScene from '../scenes/TreeAnimation.js';
 import BasicsScene from '../scenes/BasicsExplanation.js'
 import PseudoWalkScene from '../scenes/PseudocodeWalkthrough.js'
 import PracticeScene from '../scenes/PracticeScene.js'
+import SettingsScene from '../scenes/SettingsScene.js';
+import StyleManager from '../styling.js'
+import EvalEntryScene from '../scenes/EvalPreSlide.js';
+import EvalSlidesScene from '../scenes/EvalSlides.js';
+import ConvEntryScene from '../scenes/ConvPreSlide.js';
+import ConvSlideScene from '../scenes/ConvSlides.js';
+
+let configStyling = StyleManager.getConfigStyle();
 
 export const gameConfig = {
     type: Phaser.AUTO,
-    width: 1024,
-    height: 768,
+    width: configStyling.width,
+    height: configStyling.height,
     parent: 'game-container',
-    backgroundColor: '#1a1a2e',
+    backgroundColor: configStyling.bgCol,
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
@@ -30,7 +38,12 @@ export const gameConfig = {
         ExpressionTreeAnimScene,
         BasicsScene,
         PseudoWalkScene,
-        PracticeScene
+        PracticeScene,
+        SettingsScene,
+        EvalEntryScene,
+        EvalSlidesScene,
+        ConvEntryScene,
+        ConvSlideScene
     ],
     physics: {
         default: 'arcade',

@@ -1,50 +1,45 @@
-import { titleGeneration, createNavButton } from "../utilities/UIHelper.js";
-import { myStyles } from "../styling.js";
+import { titleGeneration, createSceneNavButton, updateY} from "../utilities/UIHelper.js";
+import StyleManager from "../styling.js"
 export default class MenuScene extends Phaser.Scene {
     constructor() {
         super({ key: 'MenuScene' });
-        this.title = 'RPN Teaching Tool'
+    }
+
+    init(){
+        this.margins = StyleManager.getMargins(this);
+
+        this.title = 'RPN Teaching Tool';
+        this.nextY = this.margins.topMarginVal;
     }
 
     create() {
         // Title
-        this.titleDisplay = titleGeneration(this);
+        this.titleDisplay = titleGeneration(this, this.nextY);
 
-        let nextElementY = this.titleDisplay.y + this.titleDisplay.height + myStyles.spacing.verticalElementSpacing
+        updateY(this, this.titleDisplay);
         
         // Navigation buttons
         const buttonData = {
-            labels: [
-                'What is RPN?',
-                'Infix ↔ RPN',
-                'Expression Trees',
-                'Evaluation',
-                'Pseudocode Walkthrough',
-                'Practice'
-            ],
-            destinations: [
-                'BasicsScene',
-                'ConversionExplanationScene',
-                'TreeExplanationScene',
-                'EvalExplanationScene',
-                'PseudoWalkScene',
-                'PracticeScene'
-            ]
+            'What is RPN?'              :   'BasicsScene',
+            'Infix ↔ RPN'               :   'ConversionExplanationScene',
+            'Expression Trees'          :   'TreeExplanationScene',
+            'Evaluation'                :   'EvalExplanationScene',
+            'Pseudocode Walkthrough'    :   'PseudoWalkScene',
+            'Practice'                  :   'PracticeScene',
+            'Settings'                  :   'SettingsScene',
+            'Eval Test Stack Scene'     :   'EvalEntryScene',
+            'Conv test scene'           :   'ConvEntryScene'
         };
-
-        let navButtonsArray = [];
-
-        for (let i = 0; i < buttonData.destinations.length; i++){
-            navButtonsArray.push(createNavButton(
+        this.navButtonsArray = [];
+        for (let label in buttonData){
+            this.navButtonsArray.push(createSceneNavButton(
                 this, 
-                myStyles.spacing.leftMargin, 
-                nextElementY, 
-                buttonData.labels[i],
-                buttonData.destinations[i],
-                myStyles.buttonStyle
+                this.margins.leftMarginVal, 
+                this.nextY, 
+                label,
+                buttonData[label]
             ));
-
-            nextElementY += navButtonsArray[i].height + myStyles.spacing.verticalElementSpacing
+            updateY(this, this.navButtonsArray[this.navButtonsArray.length - 1]);
         }
     }
 }

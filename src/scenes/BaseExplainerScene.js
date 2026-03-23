@@ -1,5 +1,5 @@
-import { myStyles } from "../styling.js";
-import { titleGeneration, menuButton, textBox, createButton, createNavButton} from "../utilities/UIHelper.js";
+import StyleManager from "../styling.js";
+import { titleGeneration, menuButton, textBox, createButton, updateY} from "../utilities/UIHelper.js";
 export class BaseExplainer extends Phaser.Scene{
     constructor(key) {
         super(key);
@@ -9,6 +9,14 @@ export class BaseExplainer extends Phaser.Scene{
         this.pages = sceneSpecificData.pages || ["No pages loaded"];
         this.title = sceneSpecificData.title || "No title loaded";
         this.pageIndex = 0;
+
+        this.margins = StyleManager.getMargins();
+        this.nextY = this.margins.topMarginVal;
+
+        this.buttonStyle = StyleManager.getButtonStyle();
+
+        //var div = document.getElementById('gameContainer');
+        //div.style.backgroundColor = StyleManager.getConfigStyle().bgCol;
     }
 
     create(){
@@ -19,36 +27,36 @@ export class BaseExplainer extends Phaser.Scene{
         menuButton(this);
 
         // Add title
-        this.titleDisplay = titleGeneration(this);
+        this.titleDisplay = titleGeneration(this, this.nextY);
 
-        let nextElementY = this.titleDisplay.y + this.titleDisplay.height + myStyles.spacing.verticalElementSpacing;
+        updateY(this, this.titleDisplay);
 
-        // Add navigation buttons and page number
+        // Add page navigation buttons and page number
         this.prevButton = createButton(this,
-            myStyles.spacing.leftMargin, 
-            nextElementY, 
+            this.margins.leftMarginVal, 
+            this.nextY, 
             "Previous", 
             this.prevPage.bind(this), 
-            myStyles.buttonStyle
+            this.buttonStyle
             ).setVisible(false);
         this.pageNum = createButton(this,
             this.prevButton.x + this.prevButton.width, 
-            nextElementY, 
+            this.nextY, 
             `Page ${this.pageIndex + 1} of ${this.pages.length}`, 
             () => {}, 
-            myStyles.buttonStyle);
+            this.buttonStyle);
         this.nextButton = createButton(this,
             this.pageNum.x + this.pageNum.width, 
-            nextElementY, 
+            this.nextY, 
             "Next", 
             this.nextPage.bind(this), 
-            myStyles.buttonStyle
+            this.buttonStyle
         );
 
-        nextElementY += this.nextButton.height + myStyles.spacing.verticalElementSpacing
+        updateY(this, this.nextButton);
 
         // Display page text
-        this.textDisplay = textBox(this, nextElementY, this.pages[0]);
+        this.textDisplay = textBox(this, this.nextY, this.pages[0]);
     }
 
     updatePage(){

@@ -4,7 +4,7 @@ export default class TreeExplanationScene extends BaseExplainer {
     constructor(){
         super({ key: 'TreeExplanationScene' });
     }
-    init(data){
+    init(){
         super.init({
             pages: [
 `

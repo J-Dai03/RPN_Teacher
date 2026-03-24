@@ -1,4 +1,4 @@
-import { evaluationProblem, RPN2InfixConversionProblem, checkAnswer } from "../utilities/Questions.js";
+import { genPracticeProblem, checkAnswer } from "../utilities/Questions.js";
 import { buttonToChar } from "../utilities/keyboardInputHandler.js";
 import StyleManager from "../styling.js";
 import { updateY, createButton, menuButton, titleGeneration, textBox } from "../utilities/UIHelper.js";
@@ -12,7 +12,7 @@ export default class PracticeScene extends Phaser.Scene {
     init(){
         this.margins = StyleManager.getMargins();
 
-        this.problem = evaluationProblem(1);
+        this.problem = genPracticeProblem(1, "Evaluation");
         this.questionAnswered = false;
         this.inputString = "";
         this.currentFeedback = '';
@@ -69,6 +69,14 @@ export default class PracticeScene extends Phaser.Scene {
         );
         updateY(this, this.submitButton);
 
+        this.demoButton = createButton(this,
+            this.margins.leftMarginVal, 
+            this.nextY, 
+            `Show me how`, 
+            () => this.startDemo(),
+        );
+        updateY(this, this.demoButton);
+
         this.feedbackDisplay = textBox(this, this.nextY, `Feedback Placeholder`);
         updateY(this, this.feedbackDisplay);
 
@@ -114,17 +122,7 @@ export default class PracticeScene extends Phaser.Scene {
     }
 
     setProblem(type, difficulty) {
-        switch (type){
-            case "Evaluation":
-                this.problem = evaluationProblem(difficulty);
-                break;
-            case "RPN2Infix":
-                this.problem = RPN2InfixConversionProblem(difficulty);
-                break;
-            default:
-                // Unsupported problem type
-                return false;
-        }
+        this.problem = genPracticeProblem(difficulty, type);
 
         this.questionAnswered = false;
         this.inputString = '';
@@ -158,5 +156,23 @@ export default class PracticeScene extends Phaser.Scene {
         }
 
         this.updatePage();
+    }
+
+    startDemo() {
+        let sceneToStart = "";
+        switch (this.problem.type){
+            case "Evaluation":
+                sceneToStart = 'EvalSlidesScene';
+                break;
+            case "RPN2Infix":
+                sceneToStart = 'ConvSlidesScene';
+                break;
+            default:
+                console.log("No scene for problem type found");
+                break;
+        }
+        if (sceneToStart.length != 0) {
+            this.scene.start(sceneToStart, { expression : this.problem.question});
+        }
     }
 }

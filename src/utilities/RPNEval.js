@@ -85,84 +85,9 @@ export function evalRPN(input){
     slideData contains an array of objects with the following format:
     {
         stackState : [string],
+        prevStackState : [string],
         expressionRemaining: string,
         slideText: string
     }
     note: first item in stackState is bottom
 */
-export function evalRPNSlide(input){
-
-    let toEval = input.slice();
-    let evalStack = [];
-    let slideData = [];
-    let maxStack = 0;
-
-    // Initial slide:
-    slideData.push({
-        stackState : [],
-        expressionRemaining: toEval,
-        slideText: `Let's evaluate ${toEval}`
-    });
-
-    // Iterate over each item 
-    for (let i = 0; i < toEval.length; i++){
-        let currentComponent = toEval[i];
-
-        // if the current item is an operand, just push it to the stack
-        if (!isNaN(Number(currentComponent))){
-            evalStack.push(currentComponent);
-
-            slideData.push({
-                stackState : evalStack.slice(),
-                expressionRemaining: toEval.slice(i + 1),
-                slideText: `${currentComponent} is an operand, so we push it to the stack`
-            });
-            maxStack = Math.max(maxStack, evalStack.length);
-
-        // currentComponent should be an operator if we're here
-        } else{
-            let b = Number(evalStack.pop());
-            let a = Number(evalStack.pop());
-            let toPush = 0;
-            switch (currentComponent){
-                case "+":
-                    toPush = a + b;
-                    break;
-                case "-":
-                    toPush = a - b;
-                    break;
-                case "×":
-                    toPush = a * b;
-                    break;
-                case "÷":
-                    toPush = a / b;
-            }
-
-            evalStack.push(toPush);
-            slideData.push({
-                stackState : evalStack.slice(),
-                expressionRemaining: toEval.slice(i + 1),
-                slideText: `${currentComponent} is an operator, so we pop the top 2 elements, ${a} and ${b}, from the stack, and push the result of ${a} ${currentComponent} ${b} (${toPush}) to the stack`
-            });
-        }
-    }
-
-    // Final slide:
-    slideData.push({
-        stackState : evalStack,
-        expressionRemaining: "",
-        slideText: `Done! We have evaluated ${input.join(" ")} to get ${evalStack[0]}.`
-    });
-
-    /*
-    for (let i = 0; i < slideData.length; i++){
-        let currentSlide = slideData[i];
-        console.log(`slideText: ${currentSlide.slideText}`);
-        console.log(`stackState: ${currentSlide.stackState.join(" ")}`);
-    }*/
-
-    return {
-        slideData : slideData,
-        maxStackSize : maxStack
-    };
-}

@@ -57,7 +57,7 @@ class StyleManager {
                 borderCol: this.generateColOptions('#ffffff', '#ffb650'),
                 fontCol: this.generateColOptions('#ffffff', '#000000'),
                 fontSize: this.generateTextSizeOptions('16px', '32px', '48px'),
-                cellDimensions: {width : 150, height: 70}
+                cellDimensions: {width : 300, height: 70}
             }
         }
     }

@@ -2,25 +2,33 @@ import { generateRPN } from "./RPNGenerator.js";
 import { evalRPN } from "./RPNEval.js";
 import { RPN2Infix } from "./RPNToInfixConversion.js";
 
-
-export function evaluationProblem(level) {
-    let problem = {
-        type: "Evaluation", 
-        question: generateRPN((2 * level) + 1, false, false, 5)
-    };
-    // No need to check if the problem can be evaluated, because we don't allow division, so no divsion by zero error.
-    problem.solution = evalRPN(problem.question).value;
-    return problem;
+function problemGen(t, q, s){
+    return {
+        type        :   t, 
+        question    :   q, 
+        solution    :   s
+    }
 }
 
-export function RPN2InfixConversionProblem(level) {
-    let problem = {
-        type: "RPN2Infix",
-        question: generateRPN((2 * level) + 1, true, true, 9)};
-    let solutionCal = RPN2Infix(problem.question)
-    problem.solution = solutionCal.resultantExpression;
-    return problem;
+export function genPracticeProblem(level, type) {
+    let question = generateRPN((2 * level) + 1, false, false, 5)
+    
+    let solution = "";
+
+    switch (type){
+        case "Evaluation":
+            solution = evalRPN(question).value;
+            break;
+        case "RPN2Infix":
+            solution = RPN2Infix(question).resultantExpression;
+            break;
+        default:
+            break;
+    }
+
+    return problemGen(type, question, solution);;
 }
+
 
 export function checkAnswer(problem, answer){
     switch (problem.type){

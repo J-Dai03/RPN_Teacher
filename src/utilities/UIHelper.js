@@ -54,14 +54,12 @@ export function updateY(scene, element, vertSpace = StyleManager.getMargins().ve
     scene.nextY = element.y + element.height + vertSpace;
 }
 
-export function createEmptyStackDisplay(scene, startY, stackSize, styling = StyleManager.getStackElementStyle()){
-    console.log(`createEmptyStackDisplay with stackSize ${stackSize}`);
-
+export function createEmptyStackDisplay(scene, startY, x = StyleManager.getMargins().leftMarginVal, stackSize, styling = StyleManager.getStackElementStyle(), heightAvailable){
     let nextY = startY;
-    let x = StyleManager.getMargins().leftMarginVal;
+    let cellHeight = Math.floor(heightAvailable / stackSize);
     let toReturn = [];
     for (let i = 0; i < stackSize; i++){
-        let cell = scene.add.rectangle(x, nextY, styling.cellDim.width, styling.cellDim.height).setOrigin(0);
+        let cell = scene.add.rectangle(x, nextY, styling.cellDim.width, cellHeight).setOrigin(0);
         cell.setFillStyle(hexStringToInt(styling.fillCol));
         cell.setStrokeStyle(2, hexStringToInt(styling.borderCol));
 
@@ -79,4 +77,8 @@ export function createEmptyStackDisplay(scene, startY, stackSize, styling = Styl
     }
 
     return toReturn;
+}
+
+export function treeDisplayGen(expression, x, y, width, height){
+    
 }

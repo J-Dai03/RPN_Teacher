@@ -1,5 +1,5 @@
 import { BaseStackSlide } from "./BaseStackSlideScene.js";
-import { evalRPNSlide } from "../utilities/RPNEval.js";
+import { evalRPNSlide } from "../utilities/SlideGenerator.js";
 
 export default class EvalSlidesScene extends BaseStackSlide {
     constructor(){

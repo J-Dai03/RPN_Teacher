@@ -1,5 +1,5 @@
 import { BaseStackSlide } from "./BaseStackSlideScene.js";
-import { RPN2InfixSlide } from "../utilities/RPNToInfixConversion.js";
+import { RPN2InfixSlide } from "../utilities/SlideGenerator.js";
 
 export default class ConvSlideScene extends BaseStackSlide {
     constructor(){

@@ -1,4 +1,4 @@
-import {RPN2InfixConversionProblem} from "../utilities/Questions.js";
+import {genPracticeProblem} from "../utilities/Questions.js";
 import StyleManager from "../styling.js";
 import { expressionToString } from "../utilities/RPNGenerator.js";
 
@@ -10,7 +10,7 @@ export default class ConvEntryScene extends Phaser.Scene {
 
         this.margins = StyleManager.getMargins();
         this.buttonStyle = StyleManager.getButtonStyle();
-        this.expression = RPN2InfixConversionProblem(3).question;
+        this.expression = genPracticeProblem(3, "RPN2Infix").question;
     }
 
     create(){

@@ -32,6 +32,10 @@ export class BaseStackSlide extends Phaser.Scene{
         note: first item in stackState is bottom
     */
 
+    preload(){
+        this.load.image('Arrow', 'assets/images/right-arrow.png')
+    }
+
     create(){
 
         // Add menu button
@@ -80,8 +84,19 @@ export class BaseStackSlide extends Phaser.Scene{
 
         updateY(this, this.expressionDisplay);
 
-        this.stackDisplay = createEmptyStackDisplay(this, this.nextY, this.maxStackSize, this.stackStyle);
+        let stackHeight = (this.cameras.main.height - this.nextY) - this.margins.topMarginVal;
+        this.stackDisplayA = createEmptyStackDisplay(this, this.nextY, this.margins.leftMarginVal, this.maxStackSize, this.stackStyle, stackHeight);
         // Note: first item in array is bottom of stack
+
+        let arrowPosAndDim = {
+            x   :   this.margins.leftMarginVal + StyleManager.getStackElementStyle().cellDim.width + this.margins.horizontalElementSpacing,
+            y   :   this.nextY + Math.floor(stackHeight / 2),
+            width:  StyleManager.getStackElementStyle().cellDim.width,
+            height: Math.floor(stackHeight * 0.6)
+        };
+        this.arrow = this.add.sprite(arrowPosAndDim.x, arrowPosAndDim.y, 'Arrow').setOrigin(0, 0.5).setDisplaySize(arrowPosAndDim.width, arrowPosAndDim.height);
+
+        this.stackDisplayB = createEmptyStackDisplay(this, this.nextY, arrowPosAndDim.x + arrowPosAndDim.width + this.margins.horizontalElementSpacing, this.maxStackSize, this.stackStyle, stackHeight);
 
         this.updatePage();
     }
@@ -103,12 +118,17 @@ export class BaseStackSlide extends Phaser.Scene{
         } else {
             this.expressionDisplay.setText("");
         }
+        this.updateStack(this.stackDisplayA, currentSlideData.prevStackState);
+        this.updateStack(this.stackDisplayB, currentSlideData.stackState);
+    }
+
+    updateStack(stackDisplay, stackToApply){
         for (let i = 0; i < this.maxStackSize; i++){
 
-            if (i >= currentSlideData.stackState.length){
-                this.stackDisplay[i].setText("");
+            if (i >= stackToApply.length){
+                stackDisplay[i].setText("");
             } else {
-                this.stackDisplay[i].setText(currentSlideData.stackState[i]);
+                stackDisplay[i].setText(stackToApply[i]);
             }
         }
     }

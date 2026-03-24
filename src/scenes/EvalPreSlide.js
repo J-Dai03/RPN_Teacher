@@ -1,4 +1,4 @@
-import { evaluationProblem, } from "../utilities/Questions.js";
+import { genPracticeProblem } from "../utilities/Questions.js";
 import StyleManager from "../styling.js";
 import { expressionToString } from "../utilities/RPNGenerator.js";
 
@@ -10,7 +10,7 @@ export default class EvalEntryScene extends Phaser.Scene {
 
         this.margins = StyleManager.getMargins();
         this.buttonStyle = StyleManager.getButtonStyle();
-        this.expression = evaluationProblem(3).question;
+        this.expression = genPracticeProblem(3, "Evaluation").question;
     }
 
     create(){

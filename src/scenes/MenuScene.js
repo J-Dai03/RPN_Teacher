@@ -22,13 +22,11 @@ export default class MenuScene extends Phaser.Scene {
         const buttonData = {
             'What is RPN?'              :   'BasicsScene',
             'Infix ↔ RPN'               :   'ConversionExplanationScene',
-            'Expression Trees'          :   'TreeExplanationScene',
             'Evaluation'                :   'EvalExplanationScene',
-            'Pseudocode Walkthrough'    :   'PseudoWalkScene',
+            'Expression Trees'          :   'TreeExplanationScene',
             'Practice'                  :   'PracticeScene',
-            'Settings'                  :   'SettingsScene',
-            'Eval Test Stack Scene'     :   'EvalEntryScene',
-            'Conv test scene'           :   'ConvEntryScene'
+            'Interactive Demonstrations':   'InteractivesScene',
+            'Settings'                  :   'SettingsScene'
         };
         this.navButtonsArray = [];
         for (let label in buttonData){

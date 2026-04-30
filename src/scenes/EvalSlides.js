@@ -14,6 +14,7 @@ export default class EvalSlidesScene extends BaseStackSlide {
         });
     }
     create() {
+        console.log("Eval scene");
         super.create();
     }
 }

@@ -9,8 +9,8 @@ export default class ConversionExplanationScene extends BaseExplainer {
             pages: [
 `
 Despite the totally different philosophies between RPN and infix notation, it is quite easy to convert from RPN to infix.
+The RPN to infix algorithm is:
 
-RPN to infix algorithm:
 1. Create a stack data structure.
 2. Consider the first item of the expression.
 3. If the item is an operand (e.g. 3 or x), push it to the stack.
@@ -22,8 +22,10 @@ RPN to infix algorithm:
 6. There should be one item left in the stack. Pop it off and output it.
 `,
 `
-Note that this returns the fully parenthesised version of the infix expression, as accounting for order of operations is beyond the scope of this tool.
+Note that this returns the fully parenthesised version of the infix expression, as accounting for order of operations is beyond the scope of this learning tool.
 Converting from infix expressions to RPN expression is also beyond the scope of this tool.
+
+If you would like to see a demonstration of this, go the main menu and select the Interactive Demonstrations option.
 `
 
             ],

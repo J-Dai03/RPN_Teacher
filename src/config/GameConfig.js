@@ -16,6 +16,8 @@ import EvalEntryScene from '../scenes/EvalPreSlide.js';
 import EvalSlidesScene from '../scenes/EvalSlides.js';
 import ConvEntryScene from '../scenes/ConvPreSlide.js';
 import ConvSlideScene from '../scenes/ConvSlides.js';
+import TreeScene from '../scenes/EvaluationTreeScene.js';
+import InteractivesScene from '../scenes/InteractivesScene.js'
 
 let configStyling = StyleManager.getConfigStyle();
 
@@ -43,7 +45,9 @@ export const gameConfig = {
         EvalEntryScene,
         EvalSlidesScene,
         ConvEntryScene,
-        ConvSlideScene
+        ConvSlideScene,
+        TreeScene,
+        InteractivesScene
     ],
     physics: {
         default: 'arcade',

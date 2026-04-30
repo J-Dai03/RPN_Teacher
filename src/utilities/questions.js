@@ -10,7 +10,7 @@ function problemGen(t, q, s){
     }
 }
 
-export function genPracticeProblem(level, type) {
+export function genPracticeProblem(level, type = "Evaluation") {
     let question = generateRPN((2 * level) + 1, false, false, 5)
     
     let solution = "";
@@ -40,4 +40,34 @@ export function checkAnswer(problem, answer){
             // Unsupported problem type
             return false;
     }
+}
+
+export function validRPN(expression){
+
+    console.log(`check for validity ${expression}`)
+
+    let toReturn = true;
+    let stackSize = 0;
+
+    let iterator = 0;
+
+    while (toReturn && iterator < expression.length){
+        if (/^[A-Za-z0-9]$/.test(expression[iterator])) {
+            stackSize++;
+        } else if (stackSize > 1) {
+            stackSize++;
+            switch (expression[iterator]){
+                case '×':
+                case '/':
+                case '+':
+                case '-':
+                    stackSize--;
+            }
+        } else {
+            toReturn = false;
+        }
+        iterator++;
+    }
+
+    return toReturn;
 }

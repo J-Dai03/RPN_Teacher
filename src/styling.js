@@ -58,6 +58,12 @@ class StyleManager {
                 fontCol: this.generateColOptions('#ffffff', '#000000'),
                 fontSize: this.generateTextSizeOptions('16px', '32px', '48px'),
                 cellDimensions: {width : 300, height: 70}
+            },
+            graphStyle: {
+                fillCol: this.generateColOptions('#524545', '#70c1c1'),
+                borderCol: this.generateColOptions('#ffffff', '#ffb650'),
+                fontCol: this.generateColOptions('#ffffff', '#000000'),
+                fontSize: this.generateTextSizeOptions('16px', '32px', '48px')
             }
         }
     }
@@ -136,6 +142,17 @@ class StyleManager {
             fontCol: data.fontCol[this.currentColScheme],
             cellDim: data.cellDimensions,
             fontSize: data.fontSize[this.textScale]
+        }
+    }
+
+    getGraphStyle(){
+        const data = this.styleData.graphStyle;
+        return {
+            fillCol: data.fillCol[this.currentColScheme],
+            borderCol: data.borderCol[this.currentColScheme],
+            fontCol: data.fontCol[this.currentColScheme],
+            fontSize: data.fontSize[this.textScale],
+            lineWidth: 2
         }
     }
 }

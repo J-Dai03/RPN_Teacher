@@ -9,6 +9,8 @@ function slideDataGenerator(currState, prevState, expression, text){
 
 export function evalRPNSlide(input){
 
+    console.log(`Evaluating ${input}`);
+
     let toEval = input.slice();
     let evalStack = [];
     let prevStack = [];
@@ -80,6 +82,10 @@ export function evalRPNSlide(input){
 
 
 export function RPN2InfixSlide(input){
+
+    console.log(`Converting ${input}`);
+
+
     let toEval = input.slice();
     let evalStack = [];
     let prevStack = [];

@@ -1,6 +1,7 @@
 import StyleManager from "../styling.js";
 import { titleGeneration, menuButton, textBox, createButton, updateY, treeDisplayGenPrecursor} from "../utilities/UIHelper.js";
 import { genPracticeProblem } from "../utilities/Questions.js";
+import { RPN2Infix } from "../utilities/RPNToInfixConversion.js";
 
 export default class TreeScene extends Phaser.Scene{
     constructor() {
@@ -28,8 +29,10 @@ export default class TreeScene extends Phaser.Scene{
 
         updateY(this, this.titleDisplay);
 
-        this.textDisplay = textBox(this, this.nextY, `The RPN expression ${this.myExpression} can be converted into this expression tree. 
-Note that the blue dots show the order for in-order traversal, and thus, infix notation. Similarly, the yellow dots represent postfix traversal and this RPN.`);
+        this.textDisplay = textBox(this, this.nextY, `The RPN expression (${this.myExpression}) can be converted into this expression tree. 
+Note that the yellow dots represent postfix traversal and thus, and the blue dots show the order for in-order traversal, and thus, infix notation. 
+
+This shows that the infix form of the expression is ${RPN2Infix(this.myExpression).resultantExpression}.`);
 
         updateY(this, this.textDisplay);
 

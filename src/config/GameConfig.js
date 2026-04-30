@@ -3,20 +3,15 @@
 
 import MenuScene from '../scenes/MenuScene.js';
 import EvalExplanationScene from '../scenes/EvalExplanation.js';
-import EvalAnimationScene from '../scenes/StackAnimation.js';
 import ConversionExplanationScene from '../scenes/ConversionExplanation.js';
 import TreeExplanationScene from '../scenes/ExpressionTreesExplanation.js'
-import ExpressionTreeAnimScene from '../scenes/TreeAnimation.js';
 import BasicsScene from '../scenes/BasicsExplanation.js'
-import PseudoWalkScene from '../scenes/PseudocodeWalkthrough.js'
 import PracticeScene from '../scenes/PracticeScene.js'
 import SettingsScene from '../scenes/SettingsScene.js';
 import StyleManager from '../styling.js'
-import EvalEntryScene from '../scenes/EvalPreSlide.js';
 import EvalSlidesScene from '../scenes/EvalSlides.js';
-import ConvEntryScene from '../scenes/ConvPreSlide.js';
 import ConvSlideScene from '../scenes/ConvSlides.js';
-import TreeScene from '../scenes/EvaluationTreeScene.js';
+import TreeScene from '../scenes/ExpressionTreeScene.js';
 import InteractivesScene from '../scenes/InteractivesScene.js'
 
 let configStyling = StyleManager.getConfigStyle();
@@ -34,17 +29,12 @@ export const gameConfig = {
     scene: [
         MenuScene,
         EvalExplanationScene,
-        EvalAnimationScene,
         ConversionExplanationScene,
         TreeExplanationScene,
-        ExpressionTreeAnimScene,
         BasicsScene,
-        PseudoWalkScene,
         PracticeScene,
         SettingsScene,
-        EvalEntryScene,
         EvalSlidesScene,
-        ConvEntryScene,
         ConvSlideScene,
         TreeScene,
         InteractivesScene

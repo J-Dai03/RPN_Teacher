@@ -44,30 +44,32 @@ export function checkAnswer(problem, answer){
 
 export function validRPN(expression){
 
-    console.log(`check for validity ${expression}`)
 
-    let toReturn = true;
+    let sufficientStack = true;
     let stackSize = 0;
 
     let iterator = 0;
 
-    while (toReturn && iterator < expression.length){
-        if (/^[A-Za-z0-9]$/.test(expression[iterator])) {
+    while (sufficientStack && iterator < expression.length){
+        const currentChar = expression[iterator];
+
+        if (/^[A-Za-z0-9]$/.test(currentChar)) {
             stackSize++;
-        } else if (stackSize > 1) {
-            stackSize++;
-            switch (expression[iterator]){
+
+            // If we have enough items in the stack for an operator
+        } else if (stackSize >= 2) {
+            switch (currentChar){
                 case '×':
-                case '/':
+                case '÷':
                 case '+':
                 case '-':
                     stackSize--;
             }
         } else {
-            toReturn = false;
+            sufficientStack = false;
         }
         iterator++;
     }
 
-    return toReturn;
+    return (sufficientStack && stackSize == 1);
 }

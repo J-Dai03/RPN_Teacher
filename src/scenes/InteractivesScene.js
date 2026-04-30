@@ -83,10 +83,8 @@ export default class PracticeScene extends Phaser.Scene {
     }
 
 
-    buttonPress(button){     
-        //console.log(`Button pressed: ${button}`)
+    buttonPress(button){
         let processed = buttonToChar(button)
-        //console.log(`processed: ${processed}`)
         if (processed != '!'){
             this.inputString += processed;
         }
@@ -97,7 +95,6 @@ export default class PracticeScene extends Phaser.Scene {
     }
 
     startDemo(demoType) {
-        console.log("startDemo called");
         let sceneToStart = "";
         switch (demoType){
             case "Evaluation":
@@ -121,10 +118,7 @@ export default class PracticeScene extends Phaser.Scene {
             this.errorMessage = `Error: Unable to evaluate, possibly due to division by zero.`;
             this.updatePage();
         } else {
-            console.log("Scene start attempt:")
             this.scene.start(sceneToStart, { expression : [...this.inputString]});
         }
-
-        console.log("StartDemoCalled");
     }
 }
